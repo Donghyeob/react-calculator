@@ -25,6 +25,28 @@ export const CalculatorWrapper = styled.div`
     box-sizing: border-box
 `
 
+export const ScanInputWrapper = styled.div`
+    margin-bottom: 30px;
+    text-align: right;
+`
+
+export const ScanInput = styled.input`
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: right;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.7);
+`
+
+export const DisplayWrapper = styled.div`
+    height: 40px;
+    margin-bottom: 50px;
+    text-align: right;
+    font-size: 40px;
+    font-weight: 500;
+`
+
 export const ButtonWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 68px);

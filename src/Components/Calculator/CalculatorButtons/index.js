@@ -1,7 +1,9 @@
+import { useState } from "react";
 import calculatorData from "../../../Data";
 import * as Style from "../../../Styles/styled";
 
 const CalculatorButtons = (props) => {
+    const [dotState, setDotState] = useState(true);
     const buttonRender = () => {
         const buttons = calculatorData.buttons;
         const result = [];
@@ -20,8 +22,17 @@ const CalculatorButtons = (props) => {
         return result;
     }
 
+    const getForwardChar = (string) => {
+        const getForwardChar = string[props.cursorPosition];
+        console.log(getForwardChar);
+    }
+
     const onClickSetScanInput = (e) => {
-        if (e.target.value !== 'calculate') {
+        const value = e.target.value;
+        const operation = ['+', '-', '*', '/', '%'];
+        const endOperation = ['calculate', 'reset'];
+
+        if (!endOperation.includes(value) && !operation.includes(value)) {
             props.onSetScanInputValue(
                 prev => prev.substring(0, props.cursorPosition)
                 + e.target.textContent
@@ -33,8 +44,20 @@ const CalculatorButtons = (props) => {
                 + prev.substring(props.cursorPosition)
             );
             props.setCursorPosition(prev => prev + 1);
-        } else if (e.target.value === 'calculate') {
+        } else if (operation.includes(value)) {
+            setDotState(true);
+        } else if (value === '.' && dotState) {
+            props.onSetScanInputValue(prev => {
+                getForwardChar(prev);
+            })
+            setDotState(false);
+        } else if (value === 'calculate') {
             props.onSetCalculateResult();
+        } else if (value === 'reset') {
+            props.onSetScanInputValue('');
+            props.onSetCalculatorValue('');
+            props.setResultValue('');
+            props.setCursorPosition(0);
         }
     }
 

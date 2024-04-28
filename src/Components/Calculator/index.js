@@ -21,6 +21,8 @@ const Calculator = () => {
 
     const onSetCalculateResult = () => {
         setResultValue(math.evaluate(calculateValue));
+        setScanInputValue(resultValue);
+        setCalculatorValue(resultValue);
     }
 
     return (
@@ -33,6 +35,7 @@ const Calculator = () => {
             <CalculatorButtons scanInputValue={scanInputValue}
                                cursorPosition={cursorPosition}
                                setCursorPosition={setCursorPosition}
+                               setResultValue={setResultValue}
                                onSetScanInputValue={onSetScanInputValue}
                                onSetCalculatorValue={onSetCalculatorValue}
                                onSetCalculateResult={onSetCalculateResult} />

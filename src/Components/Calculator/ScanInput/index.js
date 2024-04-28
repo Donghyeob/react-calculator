@@ -1,4 +1,5 @@
 import React from "react";
+import * as Styles from '../../../Styles/styled';
 
 const ScanInput = (props) => {
     const handleInputChange = (e) => {
@@ -11,11 +12,11 @@ const ScanInput = (props) => {
     }
 
     return (
-        <div className='scan-input-wrapper'>
-            <input onChange={handleInputChange}
+        <Styles.ScanInputWrapper>
+            <Styles.ScanInput onChange={handleInputChange}
                    onClick={handleInputClick}
                    value={props.scanInputValue} />
-        </div>
+        </Styles.ScanInputWrapper>
     )
 }
 
